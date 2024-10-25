@@ -16,7 +16,7 @@ public class OrdersScheduler {
 	@Autowired
 	private OrderRepository orderRepository;
 	
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 1000*30)
 	public void processOrders() {
 		List<OrderDetails> orderList = orderRepository.findByStatus(OrderStatus.ACKNOWLEGED);
 		orderList.stream().forEach(this::processOrder);
