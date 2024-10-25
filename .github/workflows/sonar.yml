@@ -16,7 +16,7 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_DB: orders_db
+          POSTGRES_DB: ordersdb
           POSTGRES_USER: admin
           POSTGRES_PASSWORD: admin
         ports:
