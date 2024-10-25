@@ -94,7 +94,7 @@
                 <phase>verify</phase>
                 <goals>
                     <goal>sonar</goal>
-                        </goals>
+                </goals>
 
             </execution>
 
