@@ -82,8 +82,41 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version> <!-- Make sure to use a version that supports Java 17 -->
+                <configuration>
+                	<source>${java.version}</source>
+                	<target>${java.version}</target>
+                </configuration>
+			</plugin>
+
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.10</version> <!-- Use the latest version -->
+                <executions>
+                
+                  <execution>
+                    <goals>
+                       <goal>prepare-agent</goal>
+                    </goals>
+                  </execution>
+                
+                <!-- Generate code coverage report after running tests -->
+                  <execution>
+                    <id>report</id>
+                    <phase>verify</phase>
+                    <goals>
+                       <goal>report</goal>
+                    </goals>
+                  </execution>
+                </executions>
 			</plugin>
 
 		</plugins>
