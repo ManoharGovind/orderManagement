@@ -27,6 +27,16 @@ jobs:
           --health-timeout=3s
           --health-retries=3
 
+      sonar:
+        image: sonarqube:latest
+        ports:
+          - 9000:9000
+        options: >-
+          --health-cmd="curl -f http://localhost:9000/api/system/health"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       # Step 1: Checkout the code from GitHub
       - name: Checkout code
@@ -43,11 +53,18 @@ jobs:
       - name: Build and test with Maven
         run: mvn clean verify
 
-      # Step 4: Run SonarQube analysis
+      # Step 4: Wait for SonarQube to be ready
+      - name: Wait for SonarQube to be ready
+        run: |
+          for i in {1..30}; do
+            curl -f http://localhost:9000/api/system/health && break || sleep 10
+          done
+
+      # Step 5: Run SonarQube analysis
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn clean verify sonar:sonar \
+        run: mvn sonar:sonar \
           -Dsonar.projectKey=order-management-service \
           -Dsonar.host.url=http://localhost:9000 \
           -Dsonar.login=$SONAR_TOKEN
