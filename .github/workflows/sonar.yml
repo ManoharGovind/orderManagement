@@ -48,6 +48,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn sonar:sonar \
-          -Dsonar.projectKey=your-project-key \
+          -Dsonar.projectKey=order-management-service \
           -Dsonar.host.url=http://localhost:9000 \
           -Dsonar.login=$SONAR_TOKEN
