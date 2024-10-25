@@ -35,7 +35,7 @@
           <!-- Remove hard-codes -->
         <sonar.projectKey>ManoharGovind_orderManagement</sonar.projectKey>
         <sonar.organization>orderproject</sonar.organization>
-
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
