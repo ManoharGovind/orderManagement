@@ -61,6 +61,8 @@ jobs:
 
       # Step 5: Build the project
       - name: Build with Maven
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn clean verify
 
       # Step 6: Run SonarCloud analysis
