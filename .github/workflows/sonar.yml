@@ -3,11 +3,11 @@ name: SonarCloud Analysis with PostgreSQL
 on:
   push:
     branches:
-      - v1/*
+      - v1*
       - master
   pull_request:
     branches:
-      - v1/*
+      - v1*
 
 jobs:
   sonarcloud:
